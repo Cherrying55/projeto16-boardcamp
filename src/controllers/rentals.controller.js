@@ -24,8 +24,7 @@ export async function getRentals(req,res){
         ;`        
           );
           if(alugueis.rows.length === 0) return res.sendStatus(404);
-  
-      res.send(alugueis);
+      res.send(alugueis.rows);
     } catch (err) {
       res.status(500).send(err.message);
     }

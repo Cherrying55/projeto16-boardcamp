@@ -3,19 +3,19 @@ import { db } from "../connections/db.js";
 export async function postClient(req,res){
     const { name, phone , cpf , birthday } = req.body;
 
-    /*
+    
     try{
         const alreadyclient = await db.query(
             `SELECT * FROM clientes WHERE cpf = $1;`, [cpf]
         );
-        if(alreadyclient){
-            res.sendStatus(409)
+        if(alreadyclient.rows.length != 0){
+            return res.sendStatus(409)
         }
     }
     catch (err){
         res.status(500).send(err.message)
     }
-    */
+    
 
     try {
       await db.query(
@@ -70,19 +70,19 @@ export async function getClientById(req, res) {
   
     if (!id) return res.sendStatus(400);
 
-    /*
+    
     try{
         const alreadyclient = await db.query(
             `SELECT * FROM clientes WHERE cpf = $1;`, [cpf]
         );
-        if(alreadyclient){
-            res.sendStatus(409)
+        if(alreadyclient.rows.length != 0){
+            return res.sendStatus(409)
         }
     }
     catch (err){
         res.status(500).send(err.message)
     }
-    */
+    
 
     try{
         const update = await db.query(

@@ -36,8 +36,8 @@ export async function getGames(req,res){
         );
         if(game.rows.length === 0) return res.sendStatus(404);
 
-    res.send(game.rows[0]);
+    return res.send(game.rows[0]);
   } catch (err) {
-    res.status(500).send(err.message);
+    return res.status(500).send(err.message);
   }
 }

@@ -13,7 +13,7 @@ export async function postClient(req,res){
         }
     }
     catch (err){
-        res.status(500).send(err.message)
+        return res.status(500).send(err.message)
     }
     
 
@@ -24,7 +24,7 @@ export async function postClient(req,res){
       );
       return res.sendStatus(201);
     } catch (err) {
-      res.status(500).send(err.message);
+      return res.status(500).send(err.message);
     }
 
     //close
@@ -59,7 +59,7 @@ export async function getClientById(req, res) {
   
       res.send(cliente.rows[0]);
     } catch (err) {
-      res.status(500).send(err.message);
+      return res.status(500).send(err.message);
     }
   }
 
@@ -80,7 +80,7 @@ export async function getClientById(req, res) {
         }
     }
     catch (err){
-        res.status(500).send(err.message)
+        return res.status(500).send(err.message)
     }
     
 
@@ -89,9 +89,9 @@ export async function getClientById(req, res) {
             `UPDATE clientes SET name=$1, phone = $2, cpf = $3, birthday=$4 WHERE id=$5;`, 
             [name, phone, cpf, birthday, id]
         );
-        res.sendStatus(200);
+        return res.sendStatus(200);
     }
     catch(err){
-        res.status(500).send(err.message);
+        return res.status(500).send(err.message);
     }
   }

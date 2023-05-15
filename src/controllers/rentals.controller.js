@@ -24,9 +24,9 @@ export async function getRentals(req,res){
         ;`        
           );
           if(alugueis.rows.length === 0) return res.sendStatus(404);
-      res.send(alugueis.rows);
+      return res.send(alugueis.rows);
     } catch (err) {
-      res.status(500).send(err.message);
+      return res.status(500).send(err.message);
     }
 }
 
@@ -42,7 +42,7 @@ export async function postRental(req,res){
         }
     }
     catch(err){
-        res.status(500).send(err.message);
+        return res.status(500).send(err.message);
     }
 
     try{
@@ -54,7 +54,7 @@ export async function postRental(req,res){
         }
     }
     catch(err){
-        res.status(500).send(err.message);
+        return res.status(500).send(err.message);
     }
 
     try {
@@ -63,7 +63,7 @@ export async function postRental(req,res){
             res.sendStatus(400);
         }
     } catch (err) {
-        res.status(500).send(err.message);
+        return res.status(500).send(err.message);
     }
 
     try{
@@ -76,10 +76,10 @@ export async function postRental(req,res){
         const novoaluguel = await db.query(`
         INSERT INTO alugueis (customerId, gameId, daysRented, rentDate, originalPrice, returnDate, delayFee) VALUES ($1, $2, $3, $4, $5, $6, $7)
         `, [customerId, gameId, daysRented, dayjs().format('DD-MM-YYYY'), originalPrice , null, null ]);
-        res.sendStatus(201);
+        return res.sendStatus(201);
     }
     catch(err){
-        res.status(500).send(err.message);
+        return res.status(500).send(err.message);
     }
 }
 
@@ -148,7 +148,7 @@ export async function endRental(req,res){
      return res.sendStatus(200);
         
     } catch (error) {
-        res.status(500).send(error.message)
+        return res.status(500).send(error.message)
     }
     
 }

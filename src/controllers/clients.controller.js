@@ -22,7 +22,7 @@ export async function postClient(req,res){
         `INSERT INTO clientes (name, phone, cpf, birthday) VALUES ($1, $2, $3, $4);`,
         [name, phone, cpf, birthday]
       );
-      res.sendStatus(201);
+      return res.sendStatus(201);
     } catch (err) {
       res.status(500).send(err.message);
     }
